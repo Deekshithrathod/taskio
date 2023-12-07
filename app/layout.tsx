@@ -4,6 +4,10 @@ import { Montserrat as FontSans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import { cn } from "@/lib/utils";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import MaxWidthWrapper from "@/components/ui/max-w-wrapper";
+import NavBar from "@/components/NavBar";
 
 export const metadata: Metadata = {
 	title: "Taskio",
@@ -26,14 +30,22 @@ export default function RootLayout({
 			<body
 				className={cn(
 					"min-h-screen bg-background font-montserrat antialiased",
-					fontSans.variable
+					fontSans.variable,
+					"relative px-4 sm:px-6 lg:px-8"
 				)}>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"
 					enableSystem
 					disableTransitionOnChange>
-					{children}
+					<MaxWidthWrapper>
+						<div className="pb-12">
+							<Header />
+							<NavBar />
+							{children}
+						</div>
+					</MaxWidthWrapper>
+					<Footer />
 				</ThemeProvider>
 			</body>
 		</html>
