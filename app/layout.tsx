@@ -31,7 +31,7 @@ export default function RootLayout({
 				className={cn(
 					"min-h-screen bg-background font-montserrat antialiased",
 					fontSans.variable,
-					"relative px-4 sm:px-6 lg:px-8"
+					"relative"
 				)}>
 				<ThemeProvider
 					attribute="class"
@@ -39,7 +39,7 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange>
 					<MaxWidthWrapper>
-						<div className="pb-12">
+						<div className="pb-12 px-4 sm:px-10">
 							<Header />
 							<NavBar />
 							{children}
