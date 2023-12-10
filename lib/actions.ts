@@ -36,3 +36,13 @@ export const submitTask = async (formData: FormData) => {
 	// revalidate Path
 	revalidatePath("/");
 };
+
+export const deleteAllCompletedTasks = async () => {
+	console.log(`from deleteAllCompletedTasks`);
+
+	const deletedTasks = await prisma.task.deleteMany({
+		where: {
+			completed: true,
+		},
+	});
+};
