@@ -13,7 +13,7 @@ const Task = ({
 }) => {
 	return (
 		<div className="flex gap-2 sm:gap-3">
-			<Checkbox id={id} completed={completed} handleChange={() => {}} />
+			<Checkbox id={id} completed={completed} />
 			<label
 				htmlFor={`id-${id}`}
 				className={clsx(

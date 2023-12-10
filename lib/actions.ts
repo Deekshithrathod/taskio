@@ -31,18 +31,28 @@ export const submitTask = async (formData: FormData) => {
 		},
 	});
 
-	console.log(task, `from submitTask`);
-
 	// revalidate Path
 	revalidatePath("/");
 };
 
 export const deleteAllCompletedTasks = async () => {
-	console.log(`from deleteAllCompletedTasks`);
-
 	const deletedTasks = await prisma.task.deleteMany({
 		where: {
 			completed: true,
 		},
 	});
+	revalidatePath("/");
+};
+
+export const updateTask = async (id: number, completed: boolean) => {
+	const task = await prisma.task.update({
+		where: {
+			id: id,
+		},
+		data: {
+			completed: completed,
+		},
+	});
+
+	revalidatePath("/");
 };
