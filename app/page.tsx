@@ -1,5 +1,6 @@
 import DisplayTasks from "@/components/DisplayTasks";
 import AddTask from "@/components/ui/add-task";
+import DeleteAll from "@/components/ui/delete-all";
 
 export default function Page({
 	searchParams,
@@ -16,6 +17,8 @@ export default function Page({
 	return (
 		<>
 			<AddTask />
+			<DeleteAll />
+
 			<DisplayTasks limit={limit} offset={offset} filter={filter} />
 		</>
 	);
