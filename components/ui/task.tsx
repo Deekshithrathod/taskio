@@ -12,7 +12,7 @@ const Task = ({
 	completed: boolean;
 }) => {
 	return (
-		<div className="flex gap-2 sm:gap-3">
+		<div className="flex gap-2 sm:gap-3 align-middle">
 			<Checkbox id={id} completed={completed} />
 			<label
 				htmlFor={`id-${id}`}

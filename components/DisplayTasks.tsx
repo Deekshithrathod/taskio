@@ -1,7 +1,8 @@
 import { Task as TaskType } from "@/lib/types";
 import { Suspense } from "react";
 import TaskList from "./TaskList";
-import MaxWidthWrapper from "./ui/max-w-wrapper";
+import LoadMore from "./ui/load-more";
+import TaskListSkeleton from "./ui/skeletons/TaskListSkeleton";
 
 const DisplayTasks = async ({
 	limit,
@@ -12,9 +13,11 @@ const DisplayTasks = async ({
 	offset: number;
 	filter: string;
 }) => {
-	let { tasks }: { tasks: TaskType[] } = await fetch(
+	const res = await fetch(
 		`http://localhost:3000/api/task?limit=${limit}&offset=${offset}`
-	).then((res) => res.json());
+	);
+	let { tasks }: { tasks: TaskType[] } = await res.json();
+	// await new Promise((resolve) => setTimeout(resolve, 5000));
 
 	if (filter !== "All") {
 		const filteredTasks = tasks.filter((task) => {
@@ -28,17 +31,10 @@ const DisplayTasks = async ({
 	}
 
 	return (
-		<Suspense fallback={<div>Loading...</div>}>
-			{tasks.length !== 0 ? (
-				<TaskList tasks={tasks} />
-			) : (
-				<MaxWidthWrapper>
-					<div className="mt-4 mx-6 sm:mx-0 sm:mt-8  text-center h-40 flex items-center justify-center  bg-slate-200 rounded-xl">
-						No tasks found
-					</div>
-				</MaxWidthWrapper>
-			)}
-		</Suspense>
+		<>
+			<TaskList tasks={tasks} />
+			<LoadMore />
+		</>
 	);
 };
 export default DisplayTasks;

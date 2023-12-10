@@ -8,6 +8,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MaxWidthWrapper from "@/components/ui/max-w-wrapper";
 import NavBar from "@/components/NavBar";
+import AddTask from "@/components/ui/add-task";
+import DeleteAll from "@/components/ui/delete-all";
 
 export const metadata: Metadata = {
 	title: "Taskio",
@@ -42,6 +44,8 @@ export default function RootLayout({
 						<div className="pb-12 px-4 sm:px-10">
 							<Header />
 							<NavBar />
+							<AddTask />
+							<DeleteAll />
 							{children}
 						</div>
 					</MaxWidthWrapper>

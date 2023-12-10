@@ -1,6 +1,6 @@
 import DisplayTasks from "@/components/DisplayTasks";
-import AddTask from "@/components/ui/add-task";
-import DeleteAll from "@/components/ui/delete-all";
+import TaskListSkeleton from "@/components/ui/skeletons/TaskListSkeleton";
+import { Suspense } from "react";
 
 export default function Page({
 	searchParams,
@@ -16,9 +16,6 @@ export default function Page({
 	const filter = searchParams?.filter || "All";
 	return (
 		<>
-			<AddTask />
-			<DeleteAll />
-
 			<DisplayTasks limit={limit} offset={offset} filter={filter} />
 		</>
 	);

@@ -41,7 +41,7 @@ const NavBar = () => {
 					<div key={item.id} onClick={() => setSelectedId(item.id)}>
 						<div
 							className={clsx(
-								"p-4 sm:px-8 sm:py-1 text-center sm:bg-transparent text-black rounded-[50%]",
+								"p-4 sm:px-8 sm:py-1 text-center sm:bg-transparent text-black rounded-[50%] cursor-pointer",
 								{
 									"bg-blue-200": selectedId === item.id,
 								}
@@ -53,7 +53,7 @@ const NavBar = () => {
 						{item.id === selectedId && (
 							<div
 								key={item.id + 1}
-								className="sm:h-1 bg-blue-500 sm:rounded-tl sm:rounded-tr"></div>
+								className="sm:h-1 bg-blue-500 sm:rounded-tl sm:rounded-tr cursor-pointer"></div>
 						)}
 					</div>
 				))}
