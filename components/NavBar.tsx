@@ -3,6 +3,8 @@ import { ArrowDownToDot, ListChecks, ListTodo, Replace } from "lucide-react";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { DropdownMenu } from "./ui/dropdown-menu";
+import { ModeToggle } from "./ModeToggle";
 
 const NavBar = () => {
 	const router = useRouter();
@@ -41,7 +43,7 @@ const NavBar = () => {
 					<div key={item.id} onClick={() => setSelectedId(item.id)}>
 						<div
 							className={clsx(
-								"p-4 sm:px-8 sm:py-1 text-center sm:bg-transparent text-black rounded-[50%] cursor-pointer",
+								"p-4 sm:px-8 sm:py-1 text-center sm:bg-transparent text-black rounded-[50%] cursor-pointer dark:text-white",
 								{
 									"bg-blue-200": selectedId === item.id,
 								}

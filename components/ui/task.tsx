@@ -17,7 +17,7 @@ const Task = ({
 			<label
 				htmlFor={`id-${id}`}
 				className={clsx(
-					"text-black text-md sm:text-lg font-medium whitespace-nowrap truncate hover:whitespace-normal",
+					"text-black text-md sm:text-lg font-medium whitespace-nowrap truncate hover:whitespace-normal dark:text-white",
 					{
 						"line-through": completed,
 					}

@@ -1,8 +1,6 @@
 import { Task as TaskType } from "@/lib/types";
-import { Suspense } from "react";
 import TaskList from "./TaskList";
 import LoadMore from "./ui/load-more";
-import TaskListSkeleton from "./ui/skeletons/TaskListSkeleton";
 
 const DisplayTasks = async ({
 	limit,
@@ -18,6 +16,9 @@ const DisplayTasks = async ({
 	);
 	let { tasks }: { tasks: TaskType[] } = await res.json();
 	// await new Promise((resolve) => setTimeout(resolve, 5000));
+
+	// check local storage first & indicate to the user that tasks are from cache
+	// write custom hook
 
 	if (filter !== "All") {
 		const filteredTasks = tasks.filter((task) => {
