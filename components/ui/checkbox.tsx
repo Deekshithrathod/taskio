@@ -14,7 +14,6 @@ const Checkbox = ({ id, completed }: { id: number; completed: boolean }) => {
 				id={`id-${id}`}
 				checked={checked}
 				onChange={(e) => {
-					console.log(`checkbox clicked with id ${id}`);
 					setChecked((prevState) => !prevState);
 					update(!checked);
 				}}

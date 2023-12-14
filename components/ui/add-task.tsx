@@ -17,6 +17,8 @@ const AddTask = () => {
 					submitTask(formData);
 				}}>
 				<div className="w-[90%]">
+					{/* Add a speech to text thingy using native webAPI */}
+
 					<input
 						type="text"
 						name="text"

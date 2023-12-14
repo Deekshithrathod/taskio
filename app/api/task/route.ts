@@ -1,8 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
+// create a sleep function that'll wait for 1 seconds before returning a response
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export async function GET(request: NextRequest) {
-	const prisma = new PrismaClient();
 	const searchParams = new URLSearchParams(request.url);
 
 	let limit = Number(searchParams.get("limit"));
@@ -16,6 +18,8 @@ export async function GET(request: NextRequest) {
 	if (!offset) {
 		offset = 0;
 	}
+
+	// await sleep(5000);
 
 	const tasks = await prisma.task.findMany({
 		select: {

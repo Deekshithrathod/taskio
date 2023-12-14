@@ -15,10 +15,6 @@ const DisplayTasks = async ({
 		`http://localhost:3000/api/task?limit=${limit}&offset=${offset}`
 	);
 	let { tasks }: { tasks: TaskType[] } = await res.json();
-	// await new Promise((resolve) => setTimeout(resolve, 5000));
-
-	// check local storage first & indicate to the user that tasks are from cache
-	// write custom hook
 
 	if (filter !== "All") {
 		const filteredTasks = tasks.filter((task) => {

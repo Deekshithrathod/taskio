@@ -1,8 +1,8 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import prisma from "./db";
 
 const FormSchema = z.object({
 	id: z.number(),
@@ -16,8 +16,6 @@ const CreateTask = FormSchema.omit({
 	createdAt: true,
 	completed: true,
 });
-
-const prisma = new PrismaClient();
 
 export const submitTask = async (formData: FormData) => {
 	const { text } = CreateTask.parse({
