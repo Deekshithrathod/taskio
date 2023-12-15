@@ -3,8 +3,6 @@ import { ArrowDownToDot, ListChecks, ListTodo, Replace } from "lucide-react";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { DropdownMenu } from "./ui/dropdown-menu";
-import { ModeToggle } from "./ModeToggle";
 
 const NavBar = () => {
 	const router = useRouter();

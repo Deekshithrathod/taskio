@@ -12,7 +12,7 @@ datasource db {
 
 model Task{
   id Int @id @default(autoincrement())
-  text String?
+  text String
   completed Boolean @default(false)
   createdAt DateTime @default(now())
 } 

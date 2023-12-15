@@ -3,6 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import prisma from "./db";
+import { Task } from "@prisma/client";
+import { TaskProp } from "./types";
 
 const FormSchema = z.object({
 	id: z.number(),
@@ -17,10 +19,68 @@ const CreateTask = FormSchema.omit({
 	completed: true,
 });
 
+export const getTasks = async (
+	offset: number,
+	limit?: number
+): Promise<TaskProp[]> => {
+	const tasks = await prisma.task.findMany({
+		select: {
+			id: true,
+			text: true,
+			completed: true,
+		},
+		orderBy: {
+			createdAt: "desc",
+		},
+		skip: offset,
+		take: limit || 50,
+	});
+	return tasks;
+	// type task = Omit<Task, "createdAt">;
+
+	// const fakeTasks: task[] = [
+	// 	{
+	// 		id: 112332,
+	// 		text: "Fake Task 1",
+	// 		completed: false,
+	// 	},
+	// 	{
+	// 		id: 112333,
+	// 		text: "Fake Task 2",
+	// 		completed: true,
+	// 	},
+	// 	{
+	// 		id: 112334,
+	// 		text: "Fake Task 3",
+	// 		completed: false,
+	// 	},
+	// 	{
+	// 		id: 112335,
+	// 		text: "Fake Task 4",
+	// 		completed: true,
+	// 	},
+	// 	{
+	// 		id: 112336,
+	// 		text: "Fake Task 5",
+	// 		completed: false,
+	// 	},
+	// 	{
+	// 		id: 112337,
+	// 		text: "Fake Task 6",
+	// 		completed: true,
+	// 	},
+	// ];
+	// return fakeTasks;
+};
+
 export const submitTask = async (formData: FormData) => {
-	const { text } = CreateTask.parse({
+	let { text } = CreateTask.parse({
 		text: formData.get("text"),
 	});
+
+	if (!text) {
+		text = "";
+	}
 
 	// Create task i.e. Insert into DB
 	const task = await prisma.task.create({

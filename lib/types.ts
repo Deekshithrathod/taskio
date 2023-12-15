@@ -1,5 +1,3 @@
-export type Task = {
-	id: number;
-	text: string;
-	completed: boolean;
-};
+import { Task } from "@prisma/client";
+
+export type TaskProp = Omit<Task, "createdAt">;

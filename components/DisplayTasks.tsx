@@ -1,20 +1,9 @@
-import { Task as TaskType } from "@/lib/types";
 import TaskList from "./TaskList";
 import LoadMore from "./ui/load-more";
+import { getTasks } from "@/lib/actions";
 
-const DisplayTasks = async ({
-	limit,
-	offset,
-	filter,
-}: {
-	limit: number;
-	offset: number;
-	filter: string;
-}) => {
-	const res = await fetch(
-		`http://localhost:3000/api/task?limit=${limit}&offset=${offset}`
-	);
-	let { tasks }: { tasks: TaskType[] } = await res.json();
+const DisplayTasks = async ({ filter }: { filter: string }) => {
+	let tasks = await getTasks(0, 50);
 
 	if (filter !== "All") {
 		const filteredTasks = tasks.filter((task) => {
