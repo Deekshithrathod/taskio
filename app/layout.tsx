@@ -10,6 +10,12 @@ import MaxWidthWrapper from "@/components/ui/max-w-wrapper";
 import NavBar from "@/components/NavBar";
 import AddTask from "@/components/ui/add-task";
 import DeleteAll from "@/components/ui/delete-all";
+import "regenerator-runtime";
+import dynamic from "next/dynamic";
+
+const DictaphoneDynamic = dynamic(() => import("@/components/ui/dictaphone"), {
+	ssr: false,
+});
 
 export const metadata: Metadata = {
 	title: "Taskio",
@@ -44,9 +50,10 @@ export default function RootLayout({
 						<div className="pb-12 px-4 sm:px-10">
 							<Header />
 							<NavBar />
-							<AddTask />
-							<DeleteAll />
-							{children}
+							<DictaphoneDynamic />
+							{/* <AddTask /> */}
+							{/* <DeleteAll />
+							{children} */}
 						</div>
 					</MaxWidthWrapper>
 					<Footer />
